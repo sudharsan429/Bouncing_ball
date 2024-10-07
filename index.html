@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en"> 
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>Document</title>
+ <style>
+  body{
+   width: 100%;
+   height: 100%;
+   overflow: hidden;
+  }
+  /* .ball{ */
+   /* width: 70px;
+   height: 70px;
+   background-color: red ;
+   border-radius: 50%;   
+   position: absolute;
+   top: 100px;
+   left: 100px; */
+   
+  /* } */
+  .container{
+   width: 50%;
+   height: 600px;
+   border: 3px solid rgb(178, 112, 112);
+   position: relative;
+   /* top: 50px; */
+   /* left: 100px; */
+   background-color: rgb(40, 111, 88);
+  }
+ </style>
+</head>
+<body>
+ <div class="container" id="container">
+ <div class="ball " id="balls"></div>
+ </div>
+ <script>
+
+  var xPosition = [];
+  var yPosition = [];
+  var xVelocity = [];
+  var yVelocity = [];
+
+  function multiBall() {
+  var div = document.createElement("div");
+  var container = document.getElementById("container");
+  container.style.width = "50%";
+  container.style.height = "700PX";
+  container.style.border = "3px solid red";
+  let color = colorChange();
+  let X = Xrandom();
+  xPosition.push(X);
+  let Y = Yrandom();
+  yPosition.push(Y);
+  div.style.width = "70px";
+  div.style.height = "70px";
+  div.style.background = color;
+  div.style.position = "absolute";
+  div.style.top = Y +"px";
+  div.style.left = X +"px";
+  div.style.borderRadius = "50%";
+  document.body.appendChild(div);
+  return div;
+  var y = yVelocity();
+  yVelocity.push(y);
+ }
+
+ 
+ // color auto change
+
+ function colorChange(){
+  let palet = ["red","blue","greenyellow","yellow","cyan","orange","orangerad"];
+  let color = palet[Math.floor(Math.random()*6)];
+  return color;
+ }
+
+ // random X 
+
+ function Xrandom(){
+  let X = Math.floor(Math.random()*600);
+  return X;
+ }
+ // random Y
+
+ function Yrandom(){
+  let Y = Math.floor(Math.random()*600);
+  return Y;
+ }
+
+ function xVelocity(){
+  let xVel = Math.floor(Math.random()*600);
+  xVelocity.push(xVel);
+  return xVel;
+ }
+ 
+ function yVelocity(){
+  let yVel = Math.floor(Math.random()*600);
+  return yVel;
+ }
+
+  // loop 
+
+  
+  
+  var balls = [];
+  for(let i = 0 ;i<3 ;i++){
+   balls.push(multiBall());
+   console.log(balls[i]);
+  }
+  
+  var velocity = 100
+  function move(){
+   for(let i = 0 ; i<balls.length ; i++){
+    if(xPosition[i]<=600){
+     
+     xPosition[i] = xPosition[i] + velocity;
+     balls[i].style.left = xPosition[i] + "px" ; 
+     yPosition[i] = yPosition[i] + velocity;
+     balls[i].style.top = yPosition[i] + "px";
+     // balls[i].style.left = yPosition[i] + "px";
+   }   
+     
+   if(xPosition[i]>=200 || yPosition[i]>=200 ){
+   velocity =-velocity;
+   balls[i].style.top = yPosition[i] + "px";
+   balls[i].style.left = xPosition[i] + "px";
+  } 
+    } 
+  
+  }setInterval(move,2000);
+  
+
+ </script>
+</body>
+</html>
