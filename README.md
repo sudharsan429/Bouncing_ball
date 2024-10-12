@@ -1,1 +1,2 @@
 # Bouncing_ball
+This HTML and JavaScript code creates an animated ball that moves diagonally within the browser window. The ball's position updates every 100 milliseconds using the `movingBall` function, which changes its coordinates (`top` and `left` properties) based on the velocity and direction. When the ball reaches the edges of the window (top or left), it reverses its direction, creating a bouncing effect.
